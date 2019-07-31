@@ -1,0 +1,11 @@
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+		
+		int n2 = Integer.parseInt(br.readLine());
+		StringTokenizer token = new StringTokenizer(br.readLine());
+		int n = Integer.parseInt(token.nextToken());
+
+		bw.write("hello" + n);
+		bw.flush();
+		bw.close();
+		
