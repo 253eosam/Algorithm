@@ -47,7 +47,7 @@ public class Solution {
 			int tx = N /2; int ty = N/2;
 			LinkedList<Data> list = new LinkedList<>();
 			int visit[][] = new int[N][N];
-			list.add(new Data(ty,tx,arr[ty][tx]));
+			list.add(new Data(ty,tx,arr[	ty][tx]));
 			visit[ty][tx]= 1;
 			int sum = 0;
 			outer:while(!list.isEmpty())
