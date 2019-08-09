@@ -6,6 +6,8 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
 public class Solution {
+	public static final int REMAINDER = 1_000_000_007;
+	public static String str;
 	public static void main(String[] args) throws Exception
 	{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -14,28 +16,52 @@ public class Solution {
 		int T = Integer.parseInt(br.readLine());
 		for(int tNum = 1 ; tNum <= T ;tNum++)
 		{
-			String tmp = br.readLine();
-			char[] chars = tmp.toCharArray();
-			int sum = 0;
-			for(int i = 1; i < chars.length-1 ; i++)
+			long sum = 0;
+			str = br.readLine();
+			
+			if(str.length() <= 1)
 			{
-				char pre = chars[i-1];
-				char post = chars[i+1];
-				int cnt = 0;
-				if(pre != post)
-				{
-					if(chars[i] == pre || chars[i] == post)
-						cnt = 2;
-				}
-				else if(pre == post)
-				{
-					cnt = chars[i] == pre ? 1 : 2;
-				}
-				sum *= cnt;
+				sum = 1;
+				bw.write("#" + tNum + " " + sum + "\n");
+				break;
 			}
+//			else if(str.length() == 2)
+//				sum = str.charAt(0) == str.charAt(1) ? 1 : 4;
+			else
+				sum = edge();
+			
+			for(int i = 1 ; i < str.length()-1 ; i++)
+			{
+				int mid = middle(i);
+				sum = (sum * (mid == 0 ? 1 : mid)) % REMAINDER;
+			}
+			
 			bw.write("#" + tNum + " " + sum + "\n");
 		}//for tNum
 		bw.flush();
 		bw.close();
 	}
+	public static int middle(int index)
+	{
+		int caseNum = 0;
+		
+		if(str.charAt(index) != str.charAt(index-1))
+			caseNum++;
+		if(str.charAt(index) != str.charAt(index+1))
+			caseNum++;
+		if(str.charAt(index-1) != str.charAt(index+1))
+			caseNum++;
+		
+		return caseNum;
+	}
+	public static int edge()
+	{
+		int caseNum = 1;
+		
+		caseNum *= str.charAt(0) == str.charAt(1) ? 1 : 2;
+		caseNum *= str.charAt(str.length()-1) == str.charAt(str.length()-2) ? 1 : 2;
+		
+		return caseNum;
+	}
+	
 }
