@@ -25,7 +25,7 @@ class Data
 }
 public class Main {
 	public static int[][] arr;
-	public static boolean[][] visit;
+	public static boolean[][][] visit;	// 0 : 부수지 않은 상태 , 1 : 부수고 난 상태
 	public static Queue<Data> q;
 	public static int N,M,cnt;
 	public static void main(String[] args) throws IOException {
@@ -37,7 +37,7 @@ public class Main {
 		M = Integer.parseInt(st.nextToken());
 		
 		arr = new int[N][M];
-		visit = new boolean[N][M];
+		visit = new boolean[N][M][2];
 		for(int i = 0 ; i < N ; i++)
 		{
 			String tmp = br.readLine();
@@ -48,8 +48,8 @@ public class Main {
 		}
 		
 		q = new LinkedList<>();
-		visit[0][0]=true;
-		q.add(new Data(N-1,M-1,1,false));
+		visit[0][0][0]=true;
+		q.add(new Data(0,0,1,false));
 		
 		boolean solv = bfs();
 		
@@ -71,7 +71,7 @@ public class Main {
 		{
 			Data d = q.poll();
 //			System.out.println(d);
-			if(d.y == 0 && d.x == 0)
+			if(d.y == N-1 && d.x == M-1)
 			{
 				cnt = d.cnt;
 				solv = true;
@@ -86,14 +86,15 @@ public class Main {
 				if(0 <= ty && ty < N &&
 						0 <= tx && tx < M)
 				{
-					if(d.broken && arr[ty][tx] == 0 && !visit[ty][tx])
+					// 이동 조건 로직
+					if(d.broken && arr[ty][tx] == 0 && !visit[ty][tx][1])
 					{
-						visit[ty][tx] = true;
+						visit[ty][tx][1] = true;
 						q.add(new Data(ty,tx,d.cnt+1,d.broken));
 					}
-					else if(!d.broken && !visit[ty][tx] )
+					else if(!d.broken && !visit[ty][tx][0] )
 					{
-						visit[ty][tx] = true;
+						visit[ty][tx][0] = true;
 						if(arr[ty][tx] == 1)
 							q.add(new Data(ty,tx,d.cnt+1,true));
 						else
@@ -105,3 +106,13 @@ public class Main {
 		return solv;
 	}
 }
+
+/*
+6 6
+010000
+010100
+010100
+010100
+010111
+000110
+*/
