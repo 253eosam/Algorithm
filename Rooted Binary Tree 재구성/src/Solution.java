@@ -2,52 +2,54 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Stack;
+import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 public class Solution {
-	static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-	static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-	static LinkedList<String> queue = new LinkedList<>();
-	public static void maketree(String[] arr,int left,int right)
-	{
-		int mid = (left+right)/2;
-		queue.add(arr[mid]);
-		if(mid == left)
-			return;
-		maketree(arr,left,mid-1);
-		maketree(arr,mid+1,right);
-	}
+	public static int N;
 	public static void main(String[] args) throws Exception{
-		
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 		StringTokenizer st = null;
 		
 		int T = Integer.parseInt(br.readLine());
-		for(int tNum = 1; tNum <= T ;tNum++)
+		for(int tNum = 1; tNum <= T ; tNum++)
 		{
-			int K = Integer.parseInt(br.readLine());
-			
+			N = Integer.parseInt(br.readLine());
 			st = new StringTokenizer(br.readLine());
-			String[] arr = new String[K*2+1];
-			int cnt = 0;
-			while(st.hasMoreTokens())
+			int arrLen = (int)Math.pow(2, N)-1;
+			int[] arr = new int[arrLen];
+			for(int i = 0 ; i < arr.length ; i++)
 			{
-				arr[cnt++] = st.nextToken();
+				arr[i] = Integer.parseInt(st.nextToken());
 			}
+			ArrayList<Integer>[] list = new ArrayList[N+1];
+			for(int i = 0 ; i < N+1 ; i++)
+				list[i] = new ArrayList<Integer>();
 			
-			maketree(arr,0,arr.length-1);
+			binaryTree(list,arr,0,arrLen,1);
 			
-			while(!queue.isEmpty())
+			bw.write("#"+tNum+" ");
+			for(int i = 1 ; i < N+1 ; i++)
 			{
-				System.out.println(queue.pop() + " ");
+				for(int j = 0 ; j < list[i].size() ; j++)
+				{
+					bw.write(Integer.toString(list[i].get(j)) + " ");
+				}
+				bw.write("\n");
 			}
-			
-			
 		}//for tNum
 		bw.flush();
 		bw.close();
+	}
+	public static void binaryTree(ArrayList<Integer>[] list, int[] arr ,int left, int right, int depth)
+	{
+		if(depth > N)
+			return ;
+		int mid = (left+right)/2;
+		list[depth].add(arr[mid]);
+		binaryTree(list,arr,left,mid,depth+1);
+		binaryTree(list,arr,mid,right,depth+1);
 	}
 
 }
