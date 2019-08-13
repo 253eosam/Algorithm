@@ -4,10 +4,17 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Set;
 import java.util.StringTokenizer;
+import java.util.TreeSet;
 
 public class Main {
 	public static int A,B,C;
+	public static final int MAX_SIZE = 200;
+	public static Queue<Data[]> q = new LinkedList<>();
+	public static boolean visit[][][] = new boolean[MAX_SIZE+1][MAX_SIZE+1][MAX_SIZE+1];
+	public static Set<Integer> set = new TreeSet<>();
+	
 	public static void main(String[] args) throws Exception{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
@@ -17,33 +24,80 @@ public class Main {
 		B = Integer.parseInt(st.nextToken());
 		C = Integer.parseInt(st.nextToken());
 		
-		int maximum_size = 200;
-		int visit[][][] = new int[maximum_size+1][maximum_size+1][maximum_size+1];
-		
 		bfs();
 		
+		for(int tmp : set)
+			bw.write(String.valueOf(tmp)+" ");
+		bw.flush();
+		bw.close();
 	}
-	public static int[] directions = { 1,2,3 };
-	public static void bfs()
+	public static int[] pivots = { 0,1,2 };
+	public static void bfs() throws CloneNotSupportedException 
 	{
-		Queue<Data> q = new LinkedList<>();
-		q.offer(new Data(3,C,C));
+		Data[] data = new Data[3];
+		data[0] = new Data(0,0,A);
+		data[1] = new Data(1,0,B);
+		data[2] = new Data(2,C,C);
+		
+		q.offer(data.clone());
 		
 		while(!q.isEmpty())
 		{
+			data = q.poll();
 			
-		}
-	}
+			if(visit[data[0].cur][data[1].cur][data[2].cur])	// 가지치기 (방문)
+				continue;
+			visit[data[0].cur][data[1].cur][data[2].cur] = true;
+			
+			if(data[0].cur == 0)	// A가 비어있을때마다 값을 set에 넣어주기
+			{
+				set.add(data[2].cur);
+			}
+			
+			for(int i = 0 ; i < pivots.length ; i++)
+			{
+				for(int j = 0 ; j < pivots.length ; j++)
+				{
+					Data[] tmp = new Data[3];
+					tmp[0] = (Data) data[0].clone();
+					tmp[1] = (Data) data[1].clone();
+					tmp[2] = (Data) data[2].clone();
+					
+					if(i == j)
+						continue;
+					if(tmp[i].cur == 0)
+						continue;
+					tmp[j].cur += tmp[i].cur;	// 부어주기
+					tmp[i].cur = tmp[j].cur % tmp[j].capacity;	// 넘칠경우
+					tmp[j].cur = tmp[j].capacity;
+					System.out.println("tmp");
+					for(int k = 0 ; k < 3 ; k++ )
+						System.out.println(tmp[k]);
+					
+					q.offer(tmp.clone());
+				}
+			}
+		}//while !isEmpty
+	}//bfs
 }
-class Data
+class Data implements Cloneable
 {
 	public int capacity;
-	public int val;
+	public int cur;
 	public int index;
 	Data(int i ,int v, int c)
 	{
 		this.index = i;
-		this.val = v;
+		this.cur = v;
 		this.capacity = c;
 	}
+	@Override
+	protected Object clone() throws CloneNotSupportedException {
+		// TODO Auto-generated method stub
+		return super.clone();
+	}
+	@Override
+	public String toString() {
+		return "Data [capacity=" + capacity + ", cur=" + cur + ", index=" + index + "]";
+	}	
 }
