@@ -20,21 +20,24 @@ public class Solution {
 			int C = Integer.parseInt(st.nextToken());
 			
 			int[] arr = new int[3];
-			arr[0] = arr[1] = arr[2] = 1;
-			int cnt = 0;
+			arr[0] = arr[1] = arr[2] = 0;
+			int cnt = 1;
 			while(true)
 			{
-				if(arr[0] == A && arr[1] == B && arr[2] == C)
+				if(arr[0] == A-1 && arr[1] == B-1 && arr[2] == C-1)
 					break;
 				cnt++;
-				arr[0] %= 366;
 				arr[0]++;
-				arr[1] %= 25;
+				arr[0] %= 365;
 				arr[1]++;
-				arr[2] %= 30;
+				arr[1] %= 24;
 				arr[2]++;
+				arr[2] %= 29;
 			}
+			bw.write("#"+tNum+" "+cnt+"\n");
 		}
+		bw.flush();
+		bw.close();
 		
 	}
 
