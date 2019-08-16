@@ -4,69 +4,66 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
+import java.util.Collections;
 import java.util.StringTokenizer;
 
 public class Solution {
-	public static ArrayList<int[]> list = new ArrayList<>();
-	public static int[] uCards = null;
-	public static final int cardNum = 5;
+	
+	public static ArrayList<Integer> A = null;
+	public static ArrayList<Integer> B = null;
+	public static int cnt = 0;
+	public static int allSum = 0;
 	public static void main(String[] args) throws Exception
 	{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 		StringTokenizer st = null;
-		
+		A = new ArrayList<>();
+		B = new ArrayList<>();
 		int T = Integer.parseInt(br.readLine());
 		for(int tNum = 1; tNum <= T ; tNum++)
 		{
 			st = new StringTokenizer(br.readLine());
-			int[] counting = new int[cardNum+cardNum+1];
-			for(int i = 0; i < cardNum ; i++) {
-				counting[Integer.parseInt(st.nextToken())]++;
+			
+			for(int i = 0 ; i < 9 ; i++)
+			{
+				int tmp = Integer.parseInt(st.nextToken());
+				A.add(tmp);
+			}
+			for(int i = 1 ; i <= 18 ; i++)
+			{
+				allSum += i;
+				if(!A.contains(i))
+				{
+					B.add(i);
+				}
 			}
 			
-			int[] cards = new int[cardNum]; int cnt = 0;
-			uCards = new int[cardNum]; int uCnt = 0;
-			for(int i = 1 ; i <= cardNum+cardNum ; i++)
-			{
-				if(counting[i] == 0)
-					cards[cnt++] = i;
-				else
-					uCards[uCnt++] = i;
-			}
-			permuation(cards, 0);
-			bw.write("#"+tNum+" "+caseWin+" "+(int)(Math.pow(cardNum, cardNum)-caseWin)+"\n");
+			Collections.sort(A);
+			Collections.sort(B);
+			
+			permuation(0,0,0);
+			
+			bw.write("#"+tNum+" "+cnt+"\n");
 		}//for tNum
 		bw.flush();
 		bw.close();
 	}//main
 	public static int caseWin = 0;
-	public static void permuation(int[] arr , int depth)
+	public static void permuation(int a,int b, int sum)
 	{
-		if(arr.length -1== depth)
+		for(int i = a ; i < 9 ; i++)
 		{
-			System.out.println(Arrays.toString(arr));
-			int win = 0;
-			for(int i = 0 ; i < cardNum ; i++)
+			for(int j = b ; j < 9 ; j++)
 			{
-				if(arr[i] > uCards[i])
-					win++;
-				if(win >= cardNum/2+1)
+				if(A.get(i)>B.get(j))
 				{
-					caseWin++;
-					System.out.println(caseWin);
-					break;
+					permuation(i+1,j+1,sum+A.get(i)+B.get(j));
 				}
 			}
-			return;
 		}
-		for(int i = depth; i < cardNum ; i++)
-		{
-			swap(arr,depth,i);
-			permuation(arr, depth+1);
-			swap(arr,depth,i);
-		}
+		if(sum > allSum - sum)
+			cnt++;
 	}
 	public static void swap(int[] arr , int i, int j)
 	{
