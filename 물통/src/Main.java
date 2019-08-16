@@ -54,10 +54,11 @@ public class Main {
 				set.add(data[2].cur);
 			}
 			
-			for(int i = 0 ; i < pivots.length ; i++)
+			for(int i = 0 ; i < pivots.length ; i++)//A물통
 			{
-				for(int j = 0 ; j < pivots.length ; j++)
+				for(int j = 0 ; j < pivots.length ; j++)//B물통
 				{
+					//A물통에서 B믈통으로 물을 부워준다.
 					Data[] tmp = new Data[3];
 					tmp[0] = (Data) data[0].clone();
 					tmp[1] = (Data) data[1].clone();
@@ -68,11 +69,18 @@ public class Main {
 					if(tmp[i].cur == 0)
 						continue;
 					tmp[j].cur += tmp[i].cur;	// 부어주기
-					tmp[i].cur = tmp[j].cur % tmp[j].capacity;	// 넘칠경우
-					tmp[j].cur = tmp[j].capacity;
-					System.out.println("tmp");
-					for(int k = 0 ; k < 3 ; k++ )
-						System.out.println(tmp[k]);
+					if(tmp[j].cur > tmp[j].capacity)// 넘칠경우
+					{
+						tmp[i].cur = tmp[j].cur - tmp[j].capacity;	
+						tmp[j].cur = tmp[j].capacity;
+					}
+					else
+					{
+						tmp[i].cur = 0;
+					}
+//					System.out.println("tmp " + i +" "+ j);
+//					for(int k = 0 ; k < 3 ; k++ )
+//						System.out.println(tmp[k]);
 					
 					q.offer(tmp.clone());
 				}
