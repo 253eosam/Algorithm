@@ -1,35 +1,27 @@
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.util.StringTokenizer;
+import java.util.Scanner;
 
 public class Main {
 
 	public static void main(String[] args) throws Exception{
-
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-		
-		StringTokenizer st = null;
-		for(int i = 0 ; i < 3; i ++)
+		Scanner sc = new Scanner(System.in);
+		while(sc.hasNext())
 		{
-			st = new StringTokenizer(br.readLine());
-			int n = Integer.parseInt(st.nextToken());
-			int k = Integer.parseInt(st.nextToken());
-			int solv = coupon(n,k);
-			bw.write(solv+"\n");
+			long n = sc.nextLong();
+			long k = sc.nextLong();
+			long solv = n;
+			solv += buyChickenByCoupon(n,k);
+			System.out.println(solv);
 		}
-		bw.flush();
-		bw.close();
 	}
 	
-	public static int coupon(int n,int k)
+	public static long buyChickenByCoupon(long n , long k)
 	{
-		n += n / k;
-		if(stamp < k)
-			return n;
-		return coupon(n+stamp,n%k,k);
+		if(n / k <= 0) return 0;
+		long chicken = n / k;
+		long coupon = chicken + (n%k);
+		chicken += buyChickenByCoupon(coupon, k);
+		return chicken;
 	}
+	
 
 }
