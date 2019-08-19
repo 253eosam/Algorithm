@@ -1,11 +1,11 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
-
 	public static void main(String[] args) {
 
 		Scanner sc = new Scanner(System.in);
-		int N = 6;
+		int N = 4;
 		int[] arr = new int[N];
 		String tmp = sc.next();
 		for(int i = 0 ; i < N ; i++)
@@ -22,11 +22,18 @@ public class Main {
 			System.out.println(output);
 			return;
 		}
-		for(int i = 0 ; i < arr.length ; i++)
+		for(int i = cur ; i < arr.length ; i++)
 		{
-			if(cur == i) continue;
-			combination(arr,cur+1,len,output+String.valueOf(i));
+			swap(arr,cur,i);
+			combination(arr,cur+1,len,output+String.valueOf(arr[cur]));
+			swap(arr,cur,i);
 		}
+	}
+	public static void swap(int[] arr, int a ,int b)
+	{
+		int tmp = arr[a];
+		arr[a] = arr[b];
+		arr[b] = tmp;
 	}
 
 }
