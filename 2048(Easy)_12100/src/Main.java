@@ -96,9 +96,9 @@ public class Main {
 			}
 			break;
 		case 'v':
-			for(int x = 0 ; x < N ; x++)
-				for(int y = N-1 ; y >= 0 ; y--)
-					searchLastZeroIndexCol(data.arr, y, 1, x);
+//			for(int x = 0 ; x < N ; x++)
+//				for(int y = N-1 ; y >= 0 ; y--)
+//					searchLastZeroIndexCol(data.arr, y, 1, x);
 			break;
 		case '<':
 			for(int y = 0 ; y < N ; y++)
@@ -106,9 +106,9 @@ public class Main {
 				for(int x = 0 ; x < N ; x++)
 				{
 					int idx = searchLastZeroIndexRow(data.arr, x, -1, y);
-					if(data.arr[y][idx] == 0 || idx == 0 || idx == N-1)
+					if( idx == 0 || idx == N-1 || data.arr[y][idx] == 0)
 						swap(data.arr[y],idx,x);
-					else
+					if(0 < idx && idx < N && data.arr[y][idx-1] != 0)
 						compareNumber(data.arr[y],idx-1,idx);
 				}
 			}
