@@ -1,75 +1,97 @@
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Map;
+import java.util.Queue;
+
+class Data
+{
+	int y,x;
+	Data(int y, int x)
+	{ this.y=y; this.x=x; }
+}
 public class Main {
-	static class Data{
-		int x;
-		int y;
-		Data(int x, int y){
-			this.x = x;
-			this.y = y;
-		}
-	}
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		char[][] puzzle = new char[3][3];
-		Data cur = null;
-		boolean flag = false;
-		for(int i=0; i<3; i++) {
-			puzzle[i] = sc.nextLine().replace(" ", "").toCharArray();
-			if(flag) continue;
-			for(int j=0; j<3; j++) {
-				if(puzzle[i][j]=='0') {
-					cur = new Data(j,i);
-					flag = true;
-					break;
+	public static final int N = 3;
+	public static Map<String,Integer> visit = new HashMap<>();
+	public static Queue<String> q = new LinkedList<>();
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+		
+		String startingPos = "";
+		for(int i = 0 ; i < N ; i++)
+		{
+			String[] tmp = br.readLine().split(" ");
+			for(int j = 0 ; j < N ; j++)
+			{
+				startingPos += tmp[j];
+			}
+		}// input arr
+		
+		int pass = bfs(startingPos);
+		
+		if(pass != -1)
+			bw.write(String.valueOf(pass));
+		else
+			bw.write("-1");
+		bw.flush();
+		bw.close();
+	}//main
+	public static int[] dir = {-3,1,3,-1}; // 1차원배열의 시계방향 이동
+	public static int bfs(String startingPos) {
+		int output = -1;
+		
+		q.offer(startingPos);
+		visit.put(startingPos, 0);
+		
+		while(!q.isEmpty())
+		{
+			String str = q.poll();
+			if(str.equals("123456780"))
+			{
+				output = visit.get(str);
+				break;
+			}
+			
+			int zeroIdx = findZero(str);
+			for(int i = 0 ; i < 4 ; i++)
+			{
+				int tDir = zeroIdx + dir[i];
+				if(zeroIdx % 3 == 0 && dir[i] == -1 ) continue;
+				if(zeroIdx % 3 == 2 && dir[i] == 1 ) continue;
+				if(0 <= tDir && tDir < str.length())
+				{
+					String swapZero = swap(str,zeroIdx,tDir);
+					if(visit.get(swapZero) == null)
+					{
+						q.offer(swapZero);
+						visit.put(swapZero, visit.get(str)+1);
+					}// 방문
+					swap(str,zeroIdx,tDir);
 				}
-			}
+			}// 방향
 		}
 		
-		dfs(puzzle, cur, 0);
-		System.out.println(min==999 ? -1 : min);
+		return output;
+	}//bfs
+	public static String swap(String str, int a, int b)
+	{
+		char[] chars = str.toCharArray();
+		char tmp = chars[a];
+		chars[a] = chars[b];
+		chars[b] = tmp;
+		return new String(chars);
 	}
-	
-	static int[] dy = {-1,0,0,1};
-	static int[] dx = {0,1,-1,0};
-	static int min=999;
-	static boolean[][] visited = new boolean[3][3];
-	private static void dfs(char[][] puzzle, Data cur, int move) {
-		if(cur.y==2 && cur.x==2) {
-			if(doSame(puzzle)) 	{
-				if(min>move) min=move;
-			}
-			return;
-		}
+	public static int findZero(String str)
+	{
+		for(int i = 0 ; i < str.length() ; i++)
+			if(str.charAt(i) == '0') 
+				return i;
 		
-		visited[cur.y][cur.x] = true;
-		int tx, ty;
-		for(int i=0; i<4; i++) {
-			tx = cur.x + dx[i];
-			ty = cur.y + dy[i];
-			if(tx>=0 && tx<3 && ty>=0 && ty<3 && !visited[ty][tx]) {
-				Data next = new Data(tx,ty);
-				swap(puzzle, cur, next);
-				dfs(puzzle, next, move+1);
-				visited[ty][tx] = false;
-				swap(puzzle, cur, next);
-			}
-		}
-	}
-
-	private static void swap(char[][] puzzle, Data cur, Data next) {
-		char c = puzzle[next.y][next.x];
-		puzzle[next.y][next.x] = puzzle[cur.y][cur.x];
-		puzzle[cur.y][cur.x] = c;
-	}
-
-	private static boolean doSame(char[][] puzzle) {
-		char val = '0';
-		for(int i=0; i<3; i++) {
-			for(int j=0; j<3; j++) {
-				if(val=='8') return true;
-				if(puzzle[i][j] != ++val)	return false;
-			}
-		}
-		return true;
+		return -1;
 	}
 }
