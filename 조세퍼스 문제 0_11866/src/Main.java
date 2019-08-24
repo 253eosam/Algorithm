@@ -9,20 +9,23 @@ public class Main {
 
 		Scanner sc = new Scanner(System.in);
 		
+		//input
 		int N = sc.nextInt();
 		int K = sc.nextInt();
-		
 		for(int i = 1 ; i <= N ; i++)
 		{
 			q.offer(i);
 		}
 		
+		// logic
 		int[] arr = new int[N];
 		int cnt = 0;
 		while(!q.isEmpty())
 		{
 			arr[cnt++] = popQueue(K);
 		}
+		
+		//print
 		System.out.print("<");
 		for(int i = 0 ; i < arr.length ; i++)
 		{
@@ -35,6 +38,8 @@ public class Main {
 		}
 		System.out.print(">");
 	}
+	
+	
 	public static int popQueue(int k)
 	{
 		for(int i = 1 ; i < k ; i++)
