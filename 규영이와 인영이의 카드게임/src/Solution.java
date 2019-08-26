@@ -1,74 +1,57 @@
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.StringTokenizer;
+import java.util.Scanner;
 
 public class Solution {
-	
-	public static ArrayList<Integer> A = null;
-	public static ArrayList<Integer> B = null;
-	public static int cnt = 0;
-	public static int allSum = 0;
-	public static void main(String[] args) throws Exception
-	{
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-		StringTokenizer st = null;
-		A = new ArrayList<>();
-		B = new ArrayList<>();
-		int T = Integer.parseInt(br.readLine());
-		for(int tNum = 1; tNum <= T ; tNum++)
-		{
-			st = new StringTokenizer(br.readLine());
-			
-			for(int i = 0 ; i < 9 ; i++)
-			{
-				int tmp = Integer.parseInt(st.nextToken());
-				A.add(tmp);
+
+	static long min;
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int T = sc.nextInt();
+
+		for (int tc = 1; tc <= T; tc++) {
+			int N = sc.nextInt();
+			long[][] arr = new long[N][2];
+
+			min = 999999999999999L;
+
+			for (int i = 0; i < N; i++) {
+				arr[i][0] = sc.nextInt();
+
+				arr[i][1] = sc.nextInt();
+
 			}
-			for(int i = 1 ; i <= 18 ; i++)
-			{
-				allSum += i;
-				if(!A.contains(i))
-				{
-					B.add(i);
-				}
-			}
-			
-			Collections.sort(A);
-			Collections.sort(B);
-			
-			permuation(0,0,0);
-			
-			bw.write("#"+tNum+" "+cnt+"\n");
-		}//for tNum
-		bw.flush();
-		bw.close();
-	}//main
-	public static int caseWin = 0;
-	public static void permuation(int a,int b, int sum)
-	{
-		for(int i = a ; i < 9 ; i++)
-		{
-			for(int j = b ; j < 9 ; j++)
-			{
-				if(A.get(i)>B.get(j))
-				{
-					permuation(i+1,j+1,sum+A.get(i)+B.get(j));
-				}
-			}
+
+			boolean[] sel = new boolean[N];
+			comb(arr, 0,0,sel);
+			System.out.println("#"+tc+" "+min);
 		}
-		if(sum > allSum - sum)
-			cnt++;
 	}
-	public static void swap(int[] arr , int i, int j)
-	{
-		int tmp = arr[i];
-		arr[i] = arr[j];
-		arr[j] = tmp;
+
+
+	static void comb(long[][] arr, int idx, int select, boolean[] sel) {
+		if (idx == arr.length) {
+			long sumX = 0L;
+			long sumY = 0L;
+			if (select == arr.length / 2) {
+				long v = 0L;
+				for (int i = 0; i < arr.length; i++) {
+					if (sel[i]) {
+						sumX += arr[i][0];
+						sumY += arr[i][1];
+					}if(!sel[i]) {
+						sumX -= arr[i][0];
+						sumY -= arr[i][1];
+					}
+				}
+				v =(sumX*sumX +sumY*sumY);
+				if (v < min)
+					min = v;
+			}
+			return;
+		}
+		sel[idx] = true;
+		comb(arr, idx + 1, select + 1, sel);
+		sel[idx] = false;
+		comb(arr, idx + 1, select, sel);
 	}
-}	
+}
