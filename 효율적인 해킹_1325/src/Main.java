@@ -1,88 +1,71 @@
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.util.ArrayList;
-import java.util.Set;
-import java.util.StringTokenizer;
-import java.util.TreeSet;
+import java.io.*;
+import java.util.*;
 
 public class Main {
-	public static int N, M; 
-	public static int MaxDepth;
-	public static Set<Integer> maxSetList;
-	public static int[] isNum;
-	public static boolean[] visited;
-	public static ArrayList<ArrayList<Integer> > list = new ArrayList<>();
-	public static void main(String[] args) throws Exception{
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+	static BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+	static BufferedWriter bw=new BufferedWriter(new OutputStreamWriter(System.out));
+	static ArrayList<Integer> mmap[];
+	static boolean[] visited;
+	static int N;
+	
+	public static void main(String[] args) throws IOException{
 		StringTokenizer st = new StringTokenizer(br.readLine());
+		N=Integer.parseInt(st.nextToken());
+		int M=Integer.parseInt(st.nextToken());
 		
-		//init
-		N = Integer.parseInt(st.nextToken());
-		M = Integer.parseInt(st.nextToken());
-		maxSetList = new TreeSet<>();
-		isNum = new int[N+1];
-		visited = new boolean[N+1];
+		mmap=new ArrayList[N];
+		visited=new boolean [N];
 		
-		for(int i = 0 ; i <= N ; i++)
-		{
-			list.add(new ArrayList<>());
+		for(int i=0;i<N;i++) {
+			mmap[i]=new ArrayList<Integer>();
 		}
 		
-		//input
-		// a <- b
-		for(int i = 0 ; i < M ; i++)
-		{
-			st = new StringTokenizer(br.readLine());
-			int a = Integer.parseInt(st.nextToken());
-			int b = Integer.parseInt(st.nextToken());
-			list.get(b).add(a);
+		for(int m=0;m<M;m++) {
+			st=new StringTokenizer(br.readLine());
+			int a=Integer.parseInt(st.nextToken())-1;
+			int b=Integer.parseInt(st.nextToken())-1;
+			mmap[b].add(a);
 		}
 		
-		//logic
-		for(int i = 1 ; i < list.size() ; i++)
-		{
-			int depth = dfs(i,0);
-//			System.out.println(depth + " : depth" + i);
-			if(MaxDepth < depth)
-			{
-				MaxDepth = depth;
-				maxSetList.clear();
-				maxSetList.add(i);
-			}
-			else if(MaxDepth == depth)
-			{
-				maxSetList.add(i);
+		int answer[]=new int[N];
+		int max=0;
+		LinkedList<Integer>q=new LinkedList<Integer>();
+		
+		for(int i=0;i<N;i++) {
+			q.clear();
+			visited=new boolean[N];
+			answer[i]=bfs(q,i);
+			if(max<answer[i]) max=answer[i];
+		}
+		
+		for(int i=0;i<N;i++) {
+			if(max==answer[i]) {
+				bw.append((i+1)+" ");
 			}
 		}
-		
-		//print
-		for(int tmp : maxSetList)
-			bw.write(tmp + " ");
+		bw.newLine();
 		bw.flush();
-		bw.close();
 	}
-	public static int dfs( int index, int depth)
-	{
-//		System.out.println("start : " + startingPoint + " index : "+ index + " depth : " + depth);
-		int output = 0;
-		if(visited[index] || list.get(index).size() == 0)
-		{
-			return isNum[index] = 1;
+	
+	public static int bfs(LinkedList<Integer> q,int start) { //해킹을 많이 할 수 있는 개수
+		int cnt=0;
+		
+		q.offer(start);
+		visited[start]=true;
+		
+		while(!q.isEmpty()) {
+			int cur=q.poll();
+			for(int i: mmap[cur]) {
+				if(!visited[i]) {
+					visited[i]=true;
+					q.offer(i);
+					cnt++;
+				}
+			}
 		}
 		
-		visited[index] = true;
-		for(int i = 0 ; i < list.get(index).size() ; i++)
-		{
-			int tmp = 1;
-			if(isNum[list.get(index).get(i)] == 0)
-				tmp += dfs(list.get(index).get(i),depth+1);
-			else if( isNum[list.get(index).get(i)] > 0)
-				tmp += isNum[list.get(index).get(i)];
-			output = Math.max(output, tmp);
-		}
-		return isNum[index] = output;
+		return cnt;
 	}
+	
+
 }
