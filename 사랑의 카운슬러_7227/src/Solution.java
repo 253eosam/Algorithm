@@ -1,58 +1,87 @@
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.util.ArrayList;
-import java.util.StringTokenizer;
+import java.io.*;
+import java.util.*;
 
 public class Solution {
-	public static long minimum;
-	public static int T,N;
-	public static boolean [] visit;
-	public static int[][] pos;
-	public static void main(String[] args) throws Exception{
+	static BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+	static pair[] ary=null;
+	static int xsum=0;
+	static int ysum=0;
+	
+	static double answer=Long.MAX_VALUE;
+	
+	public static void main(String[] args) throws IOException{
 
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+		int T=Integer.parseInt(br.readLine());
+		
+		for(int test=1;test<=T;test++) {
+			problem(test);
+		}
 
-		StringTokenizer st = null;
-		T = Integer.parseInt(br.readLine());
-		for(int tNum = 1 ; tNum <= T ; tNum++)
-		{
-			N = Integer.parseInt(br.readLine());
-			visit = new boolean [N];
-			pos = new int[N][2];
-			minimum = Long.MAX_VALUE;
-			for(int i = 0 ; i < N ; i++)
-			{
-				st = new StringTokenizer(br.readLine());
-				pos[i][0] = Integer.parseInt(st.nextToken());
-				pos[i][1] = Integer.parseInt(st.nextToken());
+	}
+	
+	private static void problem(int test) throws IOException{
+		int N=Integer.parseInt(br.readLine());
+		answer=Long.MAX_VALUE;
+		ary=new pair[N];
+		xsum=0;
+		ysum=0;
+		for(int i=0;i<N;i++) {
+			String in[]=br.readLine().split(" ");
+			int x=Integer.parseInt(in[0]);
+			int y=Integer.parseInt(in[1]);
+			xsum+=x; ysum+=y;
+			ary[i]=new pair(x,y);
+		}
+		
+		comb(new int[N/2],N,0,0);
+		
+		System.out.println("#"+test+" "+(long)answer);
+	}
+	
+	/**
+	 * 
+	 * @param picked 인덱스만 넣어놓은 내가 조합 뽑은거
+	 * @param N
+	 * @param start
+	 * @param cnt picked의 index
+	 */
+	
+	private static void comb(int[] picked, int N, int start, int cnt) {
+		if(cnt==picked.length) {
+			int txsum=0; int tysum=0;
+			for(int i:picked) {
+				txsum+=ary[i].x;
+				tysum+=ary[i].y;
 			}
-			dfs(0,0,0,0);
-			bw.write("#"+tNum+" "+minimum+"\n");
-		}//for tNum
-		bw.flush();
-		bw.close();
-	}//main
-
-	public static void dfs(int depth, int index, long ty , long tx)
-	{
-		if(depth == N/2) 
-		{
-			long vector = (ty*ty) + (tx*tx);
-			if(minimum > vector)
-				minimum = vector;
-			return ;
+			int tx=xsum-(txsum*2);
+			int ty=ysum-(tysum*2);
+			double at=Math.pow(tx, 2)+Math.pow(ty, 2);
+			if(answer>at) {
+				answer=at;
+			}
+			return;
 		}
-		for(int i = index ; i < N ; i++)
-		{
-			long vy = pos[depth][1] - pos[i][1];
-			long vx = pos[depth][0] - pos[i][0];
-			visit[i] = true;
-			dfs(depth+1,index+1,ty+vy,tx+vx);
-			visit[i] = false;
+		
+		for(int i=start;i<N;i++) {
+			picked[cnt]=i;
+			comb(picked,N,i+1,cnt+1);
 		}
+		
 	}
 
+	static class pair{
+		int x;
+		int y;
+		
+		public pair(int x, int y) {
+			this.x = x;
+			this.y = y;
+		}
+		
+		@Override
+		public String toString() {
+			return "pair [x=" + x + ", y=" + y + "]";
+		}
+		
+	}
 }
