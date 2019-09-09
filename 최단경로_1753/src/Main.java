@@ -24,7 +24,10 @@ public class Main {
 		arr = new ArrayList[V+1];
 		p = new int[V+1];
 		dis = new int[V+1];
-
+		
+		for(int i = 1 ; i <= V ; i++)
+			dis[i] = Integer.MAX_VALUE;
+		
 		for(int i = 0 ; i <= V ; i++)
 			arr[i] = new ArrayList<>();
 
@@ -34,13 +37,13 @@ public class Main {
 			int a = Integer.parseInt(st.nextToken());
 			int b = Integer.parseInt(st.nextToken());
 			int w = Integer.parseInt(st.nextToken());
-			arr[a].add(new Data(a,b,w));
+			arr[a].add(new Data(b,w));
 		}//for input
 
 		//logic
 		makeSet();
 		infinite();
-		dijkstra(1);
+		dijkstra(K);
 
 		for(int i = 1 ; i <= V ; i++)
 		{
@@ -61,28 +64,25 @@ public class Main {
 	public static void dijkstra(int start)
 	{
 		// starting point
-		for(int i = 0 ; i < arr[start].size() ; i++)
-		{
-			pq.offer(arr[start].get(i));
-		}
-		dis[start]= 0;
-
+		PriorityQueue<Data> pq = new PriorityQueue<>();
+		pq.offer(new Data(start,0));
+		dis[start] = 0;
+		
 		while(!pq.isEmpty())
 		{
 			Data pos = pq.poll();
-			unionSet(pos.a,pos.b);
 			
-			for(int i = 0 ; i < arr[pos.b].size() ; i++)
+//			System.out.println(pos.index + " : index , w : " + pos.w);
+			for(Data idx : arr[pos.index])
 			{
-				if(findSet(pos.b) == findSet(arr[pos.b].get(i).b)) continue;
-				System.out.println("a : " + pos.a + ", b :" + pos.b + ", w : " + pos.w);
-				unionSet(pos.b,arr[pos.b].get(i).b);
-				if(dis[arr[pos.b].get(i).b] > pos.w+arr[pos.b].get(i).w)
-					dis[arr[pos.b].get(i).b] = pos.w+arr[pos.b].get(i).w;
-				pq.offer(new Data(pos.b,arr[pos.b].get(i).b,pos.w+arr[pos.b].get(i).w));
+				if(dis[idx.index] > idx.w + dis[pos.index])
+				{
+					dis[idx.index] = dis[pos.index] + idx.w;
+					pq.offer(new Data(idx.index , pos.w + dis[pos.index]));
+				}
 			}
-
 		}
+		
 	}
 	public static void makeSet()
 	{
@@ -104,11 +104,10 @@ public class Main {
 }
 class Data implements Comparable<Data>
 {
-	public int a,b,w;
-	Data(int a, int b, int w)
+	public int index,w;
+	Data( int b, int w)
 	{
-		this.a =a;
-		this.b =b;
+		this.index =b;
 		this.w =w;
 	}
 	@Override
