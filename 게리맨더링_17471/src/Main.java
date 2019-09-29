@@ -12,10 +12,10 @@ public class Main {
 	public static int N;
 	public static ArrayList<Integer>[] list;
 	public static int[] arr;
-	public static boolean visited[], mainVisited[];
+	public static boolean remainVisited[], mainVisited[];	//main 방문처리가 첫번째 팀 
 	public static int MIN = Integer.MAX_VALUE;
 	public static int stoi(String str) { return Integer.parseInt(str); }
-	public static boolean DEBUG	= true;
+	public static boolean DEBUG	= false;
 	public static int sum;
 	public static void main(String[] args) throws Exception{
 		
@@ -24,7 +24,6 @@ public class Main {
 		list = new ArrayList[11];
 		for(int i = 0 ; i < 11 ; i++)
 			list[i] = new ArrayList<Integer>();
-		visited = new boolean[11];
 		arr = new int[11];
 		
 		st = new StringTokenizer(br.readLine());
@@ -41,6 +40,8 @@ public class Main {
 			}
 		}
 		
+		
+		//logic
 		for(int i = 1 ; i <= N ; i++)
 		{
 			mainVisited = new boolean[11];
@@ -48,6 +49,8 @@ public class Main {
 			dfs(i);
 		}
 		
+		
+		//print
 		if(MIN == Integer.MAX_VALUE)
 			bw.write("-1");
 		else
@@ -55,22 +58,24 @@ public class Main {
 		bw.flush();
 		bw.close();
 	}
+	
+	// 첫번째 팀 ( 완탐 )
 	public static void dfs(int x)
 	{
 		mainVisited[x] = true;
-		visited = new boolean[11];
+		remainVisited = new boolean[11];
 		sum += arr[x];
 		int remainSum = 0;
 		for(int i = 1 ; i <= N ; i++)
 		{
 			if(!mainVisited[i])
 			{
-				remainSum = remainDfs(i);
+				remainSum = remainDfs(i); // 나머지 팀을 구하는 로직
 				break;
 			}
 		}
 		
-		if(allVisited())
+		if(allVisited())	// 팀이 모두 선정되면 두 팀의 차의 최솟값 구함
 		{
 			MIN = Math.min(MIN, Math.abs(sum - remainSum));
 			if(DEBUG)
@@ -83,6 +88,7 @@ public class Main {
 			}
 		}
 		
+		//완탐로직
 		for(int i = 0 ; i < list[x].size() ; i++)
 		{
 			if(!mainVisited[list[x].get(i)])
@@ -91,11 +97,11 @@ public class Main {
 	}
 	public static int remainDfs(int x)
 	{
-		visited[x] = true;
+		remainVisited[x] = true;
 		int val = arr[x];
 		for(int i = 0 ; i < list[x].size() ; i++)
 		{
-			if(!visited[list[x].get(i)] && !mainVisited[list[x].get(i)])
+			if(!remainVisited[list[x].get(i)] && !mainVisited[list[x].get(i)])
 				val += remainDfs(list[x].get(i));
 		}
 		return val;
@@ -105,7 +111,7 @@ public class Main {
 		boolean pass = true;
 		for(int i = 1 ; i <= N ; i++)
 		{
-			if(!(visited[i] || mainVisited[i]))
+			if(!remainVisited[i] && !mainVisited[i])
 			{
 				pass = false;
 				break;
