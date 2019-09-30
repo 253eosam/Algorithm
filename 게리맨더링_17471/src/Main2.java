@@ -6,61 +6,118 @@ import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 public class Main2 {
-	public static int N;
-	public static int arr[];
 	public static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	public static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 	public static StringTokenizer st;
-	public static int stoi(String str) { return Integer.parseInt(str); }
-	public static final int MAX_SIZE = 11;
+	public static int N;
 	public static ArrayList<Integer>[] list;
-	public static boolean visited[];
-	public static int pick[];
+	public static int[] arr;
+	public static boolean remainVisited[], mainVisited[];	//main 방문처리가 첫번째 팀 
+	public static int MIN = Integer.MAX_VALUE;
+	public static int stoi(String str) { return Integer.parseInt(str); }
+	public static boolean DEBUG	= true;
+	public static int sum;
 	public static void main(String[] args) throws Exception{
 		
 		//init
 		N = stoi(br.readLine());
-		st = new StringTokenizer(br.readLine());
-		arr = new int[MAX_SIZE];
-		visited = new boolean[MAX_SIZE];
-		pick = new int[MAX_SIZE];
+		list = new ArrayList[11];
+		for(int i = 0 ; i < 11 ; i++)
+			list[i] = new ArrayList<Integer>();
+		arr = new int[11];
 		
+		st = new StringTokenizer(br.readLine());
 		for(int i = 1 ; i <= N ; i++)
 			arr[i] = stoi(st.nextToken());
 		
-		list = new ArrayList[MAX_SIZE];
-		for(int i = 0 ; i <= N ; i++)
-			list[i] = new ArrayList<Integer>();
-		
-		for(int i = 1 ; i <= N ; i++ )
+		for(int i = 1 ; i <= N ; i++)
 		{
 			st = new StringTokenizer(br.readLine());
 			int M = stoi(st.nextToken());
 			for(int j = 0 ; j < M ; j++)
+			{
 				list[i].add(stoi(st.nextToken()));
+			}
 		}
 		
-		//조합
-		for(int i = 1 ; i <= 2 ; i++)
-			com(i,0,0);
+		
+		//logic
+		for(int i = 1 ; i <= N ; i++)
+		{
+			mainVisited = new boolean[11];
+			sum = 0;
+			dfs(i);
+		}
+		
+		
+		//print
+		if(MIN == Integer.MAX_VALUE)
+			bw.write("-1");
+		else
+			bw.write(String.valueOf(MIN));
+		bw.flush();
+		bw.close();
 	}
-	public static void com(int target , int deep, int cur)
+	
+	// 첫번째 팀 ( 완탐 )
+	public static void dfs(int x)
 	{
-		if(deep == target)
+		mainVisited[x] = true;
+		remainVisited = new boolean[11];
+		sum += arr[x];
+		int remainSum = 0;
+		for(int i = 1 ; i <= N ; i++)
 		{
-			for(int i = 0 ; i < deep ; i++)
-				System.out.print(pick[i] + " ");
-			System.out.println();
-			return;
+			if(!mainVisited[i])
+			{
+				remainSum = remainDfs(i); // 나머지 팀을 구하는 로직
+				break;
+			}
 		}
 		
-		for(int i = cur ; i <= N ; i++)
+		if(allVisited())	// 팀이 모두 선정되면 두 팀의 차의 최솟값 구함
 		{
-			if(visited[i]) continue;
-			pick[deep] = i;
-			visited[i] = true;
-			com(target,deep+1,i+1);
-			visited[i] = false;
+			MIN = Math.min(MIN, Math.abs(sum - remainSum));
+			if(DEBUG)
+			{
+				for(int i = 1 ; i <= N ; i++)
+					if(mainVisited[i])
+						System.out.print(arr[i] + " ");
+				System.out.println("sum : " + sum + " remainSum : " + remainSum + " MIN :" + MIN);
+				
+			}
 		}
+		
+		//완탐로직
+		for(int i = 0 ; i < list[x].size() ; i++)
+		{
+			if(!mainVisited[list[x].get(i)])
+				dfs(list[x].get(i));
+		}
+		mainVisited[x] = false;
+	}
+	public static int remainDfs(int x)
+	{
+		remainVisited[x] = true;
+		int val = arr[x];
+		for(int i = 0 ; i < list[x].size() ; i++)
+		{
+			if(!remainVisited[list[x].get(i)] && !mainVisited[list[x].get(i)])
+				val += remainDfs(list[x].get(i));
+		}
+		return val;
+	}
+	public static boolean allVisited()
+	{
+		boolean pass = true;
+		for(int i = 1 ; i <= N ; i++)
+		{
+			if(!remainVisited[i] && !mainVisited[i])
+			{
+				pass = false;
+				break;
+			}
+		}
+		return pass;
 	}
 }

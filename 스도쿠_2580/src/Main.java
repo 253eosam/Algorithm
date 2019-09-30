@@ -3,7 +3,7 @@ import java.io.BufferedWriter;
 import java.util.StringTokenizer;
 
 public class Main {
-	public static BufferedReader br;
+	public static BufferedReader br = new BufferedReader(new )
 	public static BufferedWriter bw;
 	public static StringTokenizer st;
 	public static int stoi(String str) { return Integer.parseInt(str); }
