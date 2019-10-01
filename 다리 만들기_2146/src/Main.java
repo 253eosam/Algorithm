@@ -39,8 +39,10 @@ public class Main {
 				if(arr[i][j] > 0 && !visited[i][j])
 					bfs(new Data(i,j),cnt++);
 			}
-		}
+		}// 섬 나누고
 		
+		
+		// 다리 연결
 		for(int i = 0 ; i < N ; i++)
 		{
 			for(int j = 0 ; j < N ; j++)

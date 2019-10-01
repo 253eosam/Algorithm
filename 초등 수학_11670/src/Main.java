@@ -34,6 +34,7 @@ public class Main {
 	}
 	public static Map<Integer,String> map = new HashMap<>();
 	public static Map<Integer,Data> mapNode = new HashMap<>();
+	
 	public static void dfs(int index ,ArrayList<String> list)
 	{
 		if(index == N)
