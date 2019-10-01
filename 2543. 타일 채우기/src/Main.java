@@ -23,17 +23,4 @@ public class Main {
 		
 		
 	}
-	public static int shapes[][][] = { 
-			{{1,0} , {0,1} , {1,1}},	//one
-			{{0,0} , {1,0} , {1,1}},	//two
-			{{0,0} , {0,1} , {1,0}},	//three
-			{{0,0} , {0,1} , {1,0}}		//four
-	};
-	public static int zeroIndex[][] = {
-			{ 0 , 0 } , { 0 , 1 } , { 1 , 0 } , { 1 , 1 }
-	};
-	public static void divide(int y, int x, int k)
-	{
-		
-	}
 }
