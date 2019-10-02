@@ -18,11 +18,15 @@ public class Main {
 			int sixNum = 0;
 			while(tmp > 0)
 			{
-				if(sixNum >= 3) break;
 				if(tmp % 10 == 6)
 					sixNum++;
 				else
 					sixNum = 0;
+				if(sixNum >= 3)
+				{
+					cnt++;
+					break;
+				}
 				tmp /= 10;
 			}
 			
