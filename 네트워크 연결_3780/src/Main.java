@@ -30,6 +30,7 @@ public class Main {
 				{
 				case "E":
 					int index = Integer.parseInt(st.nextToken());
+					findSet(index);
 					bw.write(String.valueOf(arr[index]) + "\n");
 					break;
 				case "I":
@@ -52,7 +53,9 @@ public class Main {
 	public static int findSet(int x)
 	{
 		if(p[x] == x) return x;
-		return findSet(p[x]);
+		int tmp = findSet(p[x]);
+		arr[x] += arr[p[x]];
+		return p[x] = tmp;
 	}
 	public static void unionSet(Edge e)
 	{
@@ -60,15 +63,9 @@ public class Main {
 		int beta = findSet(e.b);
 		if(alpha != beta)
 		{
-			p[beta] = alpha;
+			p[e.a] = e.b;
 			arr[e.a] = e.cost;
 		}
-	}
-	public static int update(int x)
-	{
-		if(p[x] == x) return x;
-		arr[p[x]] += arr[x];
-		return findSet(p[x]);
 	}
 	public static class Edge implements Comparable<Edge>
 	{
