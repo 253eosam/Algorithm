@@ -8,10 +8,10 @@ import java.util.StringTokenizer;
 
 public class Main {
 	public static int V,E,K;
-	public static ArrayList<Data>[] arr;
+	public static ArrayList<Pos>[] arr;
 	public static int[] p;
 	public static int[] dis;
-	public static PriorityQueue<Data> pq = new PriorityQueue<>();
+	public static PriorityQueue<Pos> pq = new PriorityQueue<>();
 	public static void main(String[] args) throws Exception
 	{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -37,11 +37,10 @@ public class Main {
 			int a = Integer.parseInt(st.nextToken());
 			int b = Integer.parseInt(st.nextToken());
 			int w = Integer.parseInt(st.nextToken());
-			arr[a].add(new Data(b,w));
+			arr[a].add(new Pos(b,w));
 		}//for input
 
 		//logic
-		makeSet();
 		infinite();
 		dijkstra(K);
 
@@ -64,54 +63,36 @@ public class Main {
 	public static void dijkstra(int start)
 	{
 		// starting point
-		PriorityQueue<Data> pq = new PriorityQueue<>();
-		pq.offer(new Data(start,0));
+		PriorityQueue<Pos> pq = new PriorityQueue<>();
+		pq.offer(new Pos(start,0));
 		dis[start] = 0;
 		
 		while(!pq.isEmpty())
 		{
-			Data pos = pq.poll();
+			Pos pos = pq.poll();
 			
-//			System.out.println(pos.index + " : index , w : " + pos.w);
-			for(Data idx : arr[pos.index])
+			for(Pos p : arr[pos.next])
 			{
-				if(dis[idx.index] > idx.w + dis[pos.index])
+				if(dis[p.next] > p.w + dis[pos.next])
 				{
-					dis[idx.index] = dis[pos.index] + idx.w;
-					pq.offer(new Data(idx.index , pos.w + dis[pos.index]));
+					dis[p.next] = dis[pos.next] + p.w;
+					pq.offer(new Pos(p.next , pos.w + dis[pos.next]));
 				}
 			}
 		}
 		
 	}
-	public static void makeSet()
-	{
-		for(int i = 1 ; i <= V ; i++)
-			p[i] = i;
-	}
-	public static int findSet(int x)
-	{
-		if(p[x] == x) return x;
-		return p[x] = findSet(p[x]);
-	}
-	public static void unionSet(int a, int b)
-	{
-		int pa = findSet(a);
-		int pb = findSet(b);
-		if(pa != pb)
-			p[pb] = pa;
-	}
 }
-class Data implements Comparable<Data>
+class Pos implements Comparable<Pos>
 {
-	public int index,w;
-	Data( int b, int w)
+	public int next,w;
+	Pos( int b, int w)
 	{
-		this.index =b;
+		this.next =b;
 		this.w =w;
 	}
 	@Override
-	public int compareTo(Data o) {
+	public int compareTo(Pos o) {
 		return this.w - o.w;
 	}
 }
