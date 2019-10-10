@@ -7,7 +7,7 @@ import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
 public class Main {
-	public static int V,E,K;
+	public static int V,E,start,target;
 	public static ArrayList<Pos>[] arr;
 	public static int[] p;
 	public static int[] dis;
@@ -16,11 +16,9 @@ public class Main {
 	{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-		StringTokenizer st = new StringTokenizer(br.readLine());
-
-		V = Integer.parseInt(st.nextToken());
-		E = Integer.parseInt(st.nextToken());
-		K = Integer.parseInt(br.readLine());
+		StringTokenizer st;
+		V = Integer.parseInt(br.readLine());
+		E = Integer.parseInt(br.readLine());
 		arr = new ArrayList[V+1];
 		p = new int[V+1];
 		dis = new int[V+1];
@@ -36,18 +34,15 @@ public class Main {
 			int w = Integer.parseInt(st.nextToken());
 			arr[a].add(new Pos(b,w));
 		}//for input
-
+		st = new StringTokenizer(br.readLine());
+		start = Integer.parseInt(st.nextToken());
+		target = Integer.parseInt(st.nextToken());
+		
 		//logic
 		infinite();
-		dijkstra(K);
+		dijkstra(start,target);
 
-		for(int i = 1 ; i <= V ; i++)
-		{
-			if(dis[i] == Integer.MAX_VALUE)
-				bw.write("INF\n");
-			else
-				bw.write(String.valueOf(dis[i]) + "\n");
-		}
+		bw.write(String.valueOf(dis[target]));
 		bw.flush();
 		bw.close();
 
@@ -57,7 +52,7 @@ public class Main {
 		for(int i = 1 ; i <= V ; i++)
 			dis[i] = Integer.MAX_VALUE;
 	}
-	public static void dijkstra(int start)
+	public static void dijkstra(int start, int target)
 	{
 		// starting point
 		PriorityQueue<Pos> pq = new PriorityQueue<>();
@@ -67,13 +62,13 @@ public class Main {
 		while(!pq.isEmpty())
 		{
 			Pos cur = pq.poll();
-			
+			if(cur.index == target) break;
 			for(Pos next : arr[cur.index])
 			{
-				if(dis[next.index] > next.w + dis[cur.index])
+				if(dis[next.index] > dis[cur.index] + next.w)
 				{
 					dis[next.index] = dis[cur.index] + next.w;
-					pq.offer(new Pos(next.index , cur.w + dis[cur.index]));
+					pq.offer(new Pos(next.index , dis[next.index]));
 				}
 			}
 		}
