@@ -38,16 +38,16 @@ public class Main {
 			return this.dis-o.dis;
 		}
 	}
-	public static class Vertex implements Comparable<Vertex>
+	public static class Edge implements Comparable<Edge>
 	{
 		int idx,dis;
-		Vertex(int idx , int dis)
+		Edge(int idx , int dis)
 		{
 			this.idx=idx;
 			this.dis=dis;
 		}
 		@Override
-		public int compareTo(Vertex o) {
+		public int compareTo(Edge o) {
 			return this.dis-o.dis;
 		}
 	}
@@ -69,47 +69,21 @@ public class Main {
 		for(int i = 1 ; i <= N ; i++)
 			System.out.print(dis[i] + " ");
 	}
-	public static void Dijkstra2()
+	public static void Dijkstra()
 	{
 		PriorityQueue<Edge> pq = new PriorityQueue<>();
 		pq.add(new Edge(START,M,0));
-		Edge cur;
-		while(!pq.isEmpty())
-		{
-			cur = pq.poll();
-			if(dp[cur.idx] > cur.cost) continue;
-			if(cur.idx == target)
-			{
-				solv = dis[cur.idx];
-				break;
-			}
-			
-			for(Edge next : arr[cur.idx])
-			{
-				if(dis[next.idx] > dis[cur.idx] + next.dis)
-				{
-					dis[next.idx] = dis[cur.idx] + next.dis;
-					pq.add(new Edge(next.idx, cur.cost-next.cost ,dis[cur.idx] + next.dis));
-				}
-			}
-		}
-	}
-	public static void Dijkstra()
-	{
-		PriorityQueue<Vertex> pq = new PriorityQueue<>();
-		pq.add(new Vertex(START,0));
 		
 		while(!pq.isEmpty())
 		{
-			Vertex cur = pq.poll();
+			Edge cur = pq.poll();
 			
 			for(Edge e : arr[cur.idx])
 			{
 				if(dis[e.idx] > dis[cur.idx] + e.dis)
 				{
 					dis[e.idx] = dis[cur.idx] + e.dis;
-					
-					pq.add(new Vertex(e.idx,dis[cur.idx] + e.dis));
+					pq.add(new Edge(e.idx, ,dis[cur.idx] + e.dis));
 				}
 			}
 		
