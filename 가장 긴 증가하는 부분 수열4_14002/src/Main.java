@@ -28,15 +28,32 @@ public class Main {
 	}
 	private static void print() {
 		System.out.println(solv);
+		int tmp = solv - 1;
+		Stack<Integer> stack = new Stack<>();
+		for(int  i = data.length -1 ; i >= 0 ; i--)
+		{
+			if(tmp == data[i].idx)
+			{
+				stack.push(data[i].val);
+				tmp--;
+			}
+		}
+		
+		while(!stack.isEmpty())
+		{
+			System.out.print(stack.pop() + " ");
+		}
 	}
 	private static void LIS() {
 		int idx = 0;
 		dp[0] = arr[0];
+		data[0] = new Data(0,arr[0]);
 		for(int i = 1 ; i < N ; i++)
 		{
 			if(dp[idx] < arr[i])
 			{
 				dp[++idx] = arr[i];
+				data[i] = new Data(idx,arr[i]);
 			}
 			else
 			{
