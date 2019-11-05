@@ -8,6 +8,11 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
+
+
+// dp 문제
+
+
 public class Main
 {
 	public static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -65,36 +70,42 @@ public class Main
 	public static int[] dy = { 0 , 1 };
 	public static int[] dx = { 1 , 0 };
 	public static int[][] dp;
-	public static void DFS(int y, int x, int dir , int cnt, int g)
+	public static int DFS(int y, int x, int dir , int cnt, int g)
 	{
-		if(g < 0) return;
 		if(y == N-1 && x == M-1)
 		{
 			list.add(new Car(y,x,dir,cnt,g));
-			return;
+			return visited_g[y][x] = Math.min(visited_g[y][x],g);
 		}
 		
-		System.out.println("Car [y=" + y + ", x=" + x + ", dir=" + dir + ", cnt=" + cnt + ", g=" + g + "]");
-		
+//		System.out.println("Car [y=" + y + ", x=" + x + ", dir=" + dir + ", cnt=" + cnt + ", g=" + g + "]");
+		int val=Integer.MAX_VALUE;
 		for(int i = 0  ; i < 2 ; i++)
 		{
 			int ty = dy[i] + y;
 			int tx = dx[i] + x;
+			int tg = g;
+			int tcnt = cnt;
+			int mtg = 0;
 			if(0 <= ty && ty < N && 0 <= tx && tx < M)
 			{
 				if(i == 0) // 오른쪽
-					 g -= right[ty][tx];
+					 mtg = right[ty][tx];
 				else if(i == 1)	//아래
-					 g -= bottom[ty][tx];
+					 mtg = bottom[ty][tx];
 				
-				
-				cnt += L;
+				tg -= mtg;
+				tcnt += L;
 				if(dir != i)
-					cnt++;
+					tcnt++;
 					
-				DFS(ty,tx,i,cnt,g);
+				if(tg < 0)continue;
+				if(tg <	visited_g[ty][tx])continue;
+				val = Math.min(val, DFS(ty,tx,i,tcnt,tg) + mtg);
 			}
 		}
+		
+		return visited_g[y][x] = Math.min(visited_g[y][x],val);
 	}
 	
 	
@@ -163,7 +174,7 @@ public class Main
 		{
 			for(int j  = 0 ; j < M ; j++)
 			{
-				visited_g[i][j] = G;
+				visited_g[i][j] = 0;
 				visited_c[i][j] = Integer.MAX_VALUE;
 			}
 		}
