@@ -7,7 +7,7 @@ public class Main {
 	public static int N,M,T;
 	public static int[][] arr;
 	public static int[] x,d,k;
-	public static int solv;
+	public static double solv;
 	public static void main(String[] args) {
 		N = sc.nextInt();
 		M = sc.nextInt();
@@ -37,8 +37,11 @@ public class Main {
 
 		for(int k = 0 ; k < T ; k++)
 		{
-			
+			System.out.println("-------------------------------------------------");
+			boolean pass = false;
+			print(pass);
 			turn(k);
+			print(pass);
 			visited = new boolean[N+1][M+1];
 			for(int a = 1 ; a <= N ; a++)
 			{
@@ -48,7 +51,6 @@ public class Main {
 						remove(a, b);
 				}
 			}
-			boolean pass = false;
 			for(int i = 1 ; i <= N ; i++)
 			{
 				for(int j = 1 ; j <= M ; j++)
@@ -63,26 +65,25 @@ public class Main {
 			solv = 0;
 			int cnt = 0;
 			//print
-//			System.out.println("pass : " + pass);
+			System.out.println("pass : " + pass);
 			for(int i = 1 ; i <= N ; i++)
 			{
 				for(int j = 1 ; j <= M ; j++)
 				{
 					if(arr[i][j] != 0)
 					{
-//						System.out.print(arr[i][j] + " ");
 						solv += arr[i][j];
 						cnt++;
 					}
 				}
-//				System.out.println();
 			}
 
-//			System.out.println("solv : " + solv);
+			System.out.println("solv : " + solv);
 			if(!pass)
 			{
 				double avg = solv / cnt;
-
+				System.out.println("avg : " + avg);
+				
 				for(int i = 1 ; i <= N ; i++)
 				{
 					for(int j = 1 ; j <= M ; j++)
@@ -90,9 +91,9 @@ public class Main {
 						if(arr[i][j] != 0)
 						{
 							if(avg < arr[i][j])
-								 --arr[i][j];
+								 arr[i][j]--;
 							else if(avg > arr[i][j])
-								 ++arr[i][j];
+								 arr[i][j]++;
 						}
 					}
 				}
@@ -100,9 +101,11 @@ public class Main {
 //			System.out.println();
 //			System.out.println();
 			print(pass);
+			System.out.println("solv : " + solv);
+			System.out.println("-------------------------------------------------");
 		}
 
-		System.out.println(solv);
+		System.out.println((int)solv);
 	}
 	public static void print(boolean pass)
 	{
