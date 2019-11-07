@@ -48,7 +48,14 @@ public class Main
 			while(true)
 			{
 				index %= N;
-				if(arr[t][crr[index]] == 0) cnt--;
+				if(arr[t][crr[index]] == 0)
+				{
+					if(--cnt == 0) 
+					{
+						index++;
+						break;
+					}
+				}
 				else if(arr[t][crr[index]] == 4)
 				{
 					for(int i = 1 ; i <= 3 ; i++)
@@ -58,10 +65,17 @@ public class Main
 					point++;
 				}
 				else 
+				{
 					moving(arr[t][crr[index]]);
-				if(cnt == 0 ) break;
+				}
 				index++;
 			}
+		}
+		if(maximum < point)
+		{
+			for(int i = 0 ; i < N ; i++)
+				System.out.print(crr[i]+" ");
+			System.out.println("max : " + point);
 		}
 		maximum = Math.max(maximum, point);
 	}
@@ -69,18 +83,16 @@ public class Main
 	{
 		for(int i = 1 ; i <= val ; i++)
 		{
-			if(ground[i])
+			int tmp = i + val;
+			while(ground[tmp])
 			{
-				if(i + val >= 4)
-				{
-					point++;
-				}
-				else
-					ground[i+val] = true;
-				ground[i] = false;
+				ground[tmp++] = false;
 			}
+			if(tmp >= 4)
+				point++;
+			else
+				ground[tmp] = true;
 		}
-		ground[val] = true;
 	}
 	private static void logic() 
 	{
