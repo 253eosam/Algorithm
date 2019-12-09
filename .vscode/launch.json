@@ -1,0 +1,643 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Debug (Launch) - Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<1,2,3 더하기 _ 90095>",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "1,2,3 더하기 _ 90095"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<1103_경비원>",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "1103_경비원"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Solution<Base64 Decoder>",
+            "request": "launch",
+            "mainClass": "Solution",
+            "projectName": "Base64 Decoder"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<DFS와 BFS>",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "DFS와 BFS"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<DSLR>",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "DSLR"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<KCM Travel_10217>",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "KCM Travel_10217"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<LCS_9251>",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "LCS_9251"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<N-Queen_9663>",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "N-Queen_9663"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<N과 M (10)_15664>",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "N과 M (10)_15664"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<N과 M (11)_15665>",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "N과 M (11)_15665"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<N과 M (12)_15666>",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "N과 M (12)_15666"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<N과 M (2)_15650>",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "N과 M (2)_15650"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<N과 M (3)_15651>",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "N과 M (3)_15651"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<N과 M (4)_15652>",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "N과 M (4)_15652"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<N과 M (5)_15654>",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "N과 M (5)_15654"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<N과 M (6)_15655>",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "N과 M (6)_15655"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<N과 M (7)_15656>",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "N과 M (7)_15656"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<N과 M (8)_15657>",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "N과 M (8)_15657"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<N과 M (9)_15663>",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "N과 M (9)_15663"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<N과 M_15649>",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "N과 M_15649"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<Puyo Puyo_11559>",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "Puyo Puyo_11559"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<TEST>",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "TEST"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<가장 긴 증가하는 부분 수열4_14002>",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "가장 긴 증가하는 부분 수열4_14002"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<가장 긴 증가하는 부분 수열_11053>",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "가장 긴 증가하는 부분 수열_11053"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<게리맨더링2_17779>",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "게리맨더링2_17779"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<게리맨더링_17471>",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "게리맨더링_17471"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main2<게리맨더링_17471>",
+            "request": "launch",
+            "mainClass": "Main2",
+            "projectName": "게리맨더링_17471"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<경로 찾기_11403>",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "경로 찾기_11403"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<고양이_10171>",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "고양이_10171"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<곱셈_2588>",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "곱셈_2588"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<괄호_9012>",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "괄호_9012"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<구슬 탈출 2_13460>",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "구슬 탈출 2_13460"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<구슬 탈출2_13460>",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "구슬 탈출2_13460"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<균형잡힌 세상_4949>",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "균형잡힌 세상_4949"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<나머지_3052>",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "나머지_3052"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<나무 자르기_2805>",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "나무 자르기_2805"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<냉장고>",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "냉장고"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<네트워크 연결_1922>",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "네트워크 연결_1922"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<네트워크 연결_3780>",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "네트워크 연결_3780"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<녹색 옷을 입은 애가 젤다지_4485>",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "녹색 옷을 입은 애가 젤다지_4485"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<단어 뒤집기2_17413>",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "단어 뒤집기2_17413"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<도서관_2247>",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "도서관_2247"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<도시 분할 계획_1647>",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "도시 분할 계획_1647"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main2<도시 분할 계획_1647>",
+            "request": "launch",
+            "mainClass": "Main2",
+            "projectName": "도시 분할 계획_1647"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<돌 게임_9655>",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "돌 게임_9655"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<로또_6603>",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "로또_6603"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<롤 케이크_3985>",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "롤 케이크_3985"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<미로 탐색>",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "미로 탐색"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<미확인 도착지_9370>",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "미확인 도착지_9370"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<뱀_3190>",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "뱀_3190"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<부분수열의 합_1182>",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "부분수열의 합_1182"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<비밀 이메일_2999>",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "비밀 이메일_2999"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Solution<사랑의 카운슬러_7227>",
+            "request": "launch",
+            "mainClass": "Solution",
+            "projectName": "사랑의 카운슬러_7227"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<상범 빌딩_6593>",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "상범 빌딩_6593"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Solution<새로운 불면증 치료법>",
+            "request": "launch",
+            "mainClass": "Solution",
+            "projectName": "새로운 불면증 치료법"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<수 찾기_1920>",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "수 찾기_1920"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<스도쿠_2580>",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "스도쿠_2580"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<스타트와 링크_14889>",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "스타트와 링크_14889"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<스택 수열_1874>",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "스택 수열_1874"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<스택_10828>",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "스택_10828"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Solution<시간 개념>",
+            "request": "launch",
+            "mainClass": "Solution",
+            "projectName": "시간 개념"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Solution<아름이의 돌 던지기>",
+            "request": "launch",
+            "mainClass": "Solution",
+            "projectName": "아름이의 돌 던지기"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<알고스팟_1261>",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "알고스팟_1261"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<영식이와 친구들_1592>",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "영식이와 친구들_1592"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<영화감독 숌_1436>",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "영화감독 숌_1436"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<우주신과의 교감_1774>",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "우주신과의 교감_1774"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<운동_1956>",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "운동_1956"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<원판 돌리기_17822>",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "원판 돌리기_17822"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main2<원판 돌리기_17822>",
+            "request": "launch",
+            "mainClass": "Main2",
+            "projectName": "원판 돌리기_17822"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<잃어버린 괄호_1541>",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "잃어버린 괄호_1541"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<저울_10159>",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "저울_10159"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<적록색약_10026>",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "적록색약_10026"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<전깃줄_2565>",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "전깃줄_2565"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<전력난_6497>",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "전력난_6497"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<제로_10773>",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "제로_10773"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<직사각형 탈출_16973>",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "직사각형 탈출_16973"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<최단경로_1753>",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "최단경로_1753"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<최소 스패팅 트리_1197(prim)>",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "최소 스패팅 트리_1197(prim)"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<최소비용 구하기>",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "최소비용 구하기"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<최적 경로_1247>",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "최적 경로_1247"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<치킨 쿠폰>",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "치킨 쿠폰"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<카잉달력_6064>",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "카잉달력_6064"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<케빈 베이컨의 6단계 법칙_1389>",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "케빈 베이컨의 6단계 법칙_1389"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<파티_1238>",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "파티_1238"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<플로이드_11404>",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "플로이드_11404"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<피보나치 수_2747>",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "피보나치 수_2747"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<하노이 탑 이동 순서_11729>",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "하노이 탑 이동 순서_11729"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<행성 터널_2887>",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "행성 터널_2887"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<효율적인 해킹_1325>",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "효율적인 해킹_1325"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main",
+            "request": "launch",
+            "mainClass": "Main"
+        }
+    ]
+}
