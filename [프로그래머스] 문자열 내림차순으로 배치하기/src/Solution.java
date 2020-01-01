@@ -1,20 +1,12 @@
 import java.util.Arrays;
-import java.util.Comparator;
 
 class Solution {
 	String solution(String s) {
-       Character[] chars = new Character[s.length()];
+       char[] chars = s.toCharArray();
        
-       for(int i = 0 ; i < s.length() ; i++) {
-    	   chars[i] = s.charAt(i);
-       }
-
-       Arrays.sort(chars,Comparator.reverseOrder());
-       StringBuilder sb = new StringBuilder();
-       for(int i = 0 ; i < chars.length ; i++) {
-    	   sb.append(chars[i]);
-       }
-       return new String(sb);
+       Arrays.sort(chars);
+       
+       return new StringBuilder(new String(chars)).reverse().toString();
     }
     public static void main(String[] args) {
     	String s = "Zbcdefg";
