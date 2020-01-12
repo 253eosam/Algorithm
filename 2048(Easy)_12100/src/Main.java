@@ -1,145 +1,156 @@
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.StringTokenizer;
 
-class Data
-{
-	public int[][] arr;
-	Data()
-	{
-		arr = new int[Main.N][Main.N];
-	}
-}
 public class Main {
-	public static final boolean DEBUG = true;
-	public static int N , target;
-	public static void main(String[] args) throws Exception{
+	
+	public static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	public static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+	public static StringTokenizer st;
+	public static int stoi(String str ) {	return Integer.parseInt(str); }
+	
+	public static int N,answer;
+	public static int[][] arr;
+	public static final int MAXIMUM = 5;
+	
+	public static void main(String[] args) throws IOException {
+		input();
+		logic();
+		print();
+	}
 
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-		
-		// init
-		N = Integer.parseInt(br.readLine());
-		target = 5;
-		
-		// input
-		Data data = new Data();
-		for(int i = 0 ; i < N ; i++)
-		{
-			StringTokenizer st = new StringTokenizer(br.readLine());
-			for(int j = 0 ; j < N ; j++)
-			{
-				data.arr[i][j] = Integer.parseInt(st.nextToken());
-			}
-		}
-		
-		// call dfs
-//		int solv = dfs(data,0);
-		
-		if(DEBUG)
-		{
-			moving(data,'<');
-			for(int i = 0 ; i < N ; i++)
-			{
-				for(int j = 0 ; j < N ; j++)
-				{
-					System.out.print(data.arr[i][j] + " ");
-				}
-				System.out.println();
-			}
-			
-		}
-		
-		//print
-//		bw.write(String.valueOf(1));
-//		bw.flush();
-//		bw.close();
-//		
+	private static void print() throws IOException {
+		bw.append(String.valueOf(answer));
+		bw.flush();
 	}
-	
-//	public static int dfs(Data data, char direction, int cur, int maximum)
-//	{
-//		if(cur == target) return maximum;
-//		return null;
-//	}
-	
-	public static void moving(Data data, char direction)
-	{
-		switch(direction)
-		{
-		case '^':
-//			for(int x = 0 ; x < N ; x++)
-//			{
-//				for(int y = 0 ; y < N ; y++)
-//				{
-//					int idx = searchLastZeroIndexCol(data.arr, y, -1, x);
-//					if(data.arr[idx][x] == 0 || idx == 0 || idx == N-1)
-////						swap(data.arr[y][],idx,x);
-//					else
-//						compareNumber(data.arr[y],idx+1,idx);
-//				}
-//			}
-			break;
-		case '>':
-			for(int y = 0 ; y < N ; y++)
-			{
-				for(int x = N-1 ; x >= 0 ; x--)
-				{
-					int idx = searchLastZeroIndexRow(data.arr, x, 1, y);
-					if(data.arr[y][idx] == 0 || idx == 0 || idx == N-1)
-						swap(data.arr[y],idx,x);
-					else
-						compareNumber(data.arr[y],idx+1,idx);
+
+	private static void logic() {
+		for(int dir = 0 ; dir < 4 ; dir++) {
+			dfs(arr,dir,1);
+		}
+	}
+
+	private static void dfs(int[][] arr, int dir, int level) {
+		for(int i = 0 ; i < N ; i++) {
+			for(int j = 0 ; j < N ; j++) {
+				System.out.print(arr[i][j] + " ");
+			}
+			System.out.println();
+		}
+		System.out.println();
+		
+		if(level == 6) return;
+		int[][] brr = new int[N][N];
+		LinkedList<Integer>[] link = new LinkedList[N];
+		for(int i = 0 ; i < N ; i++) link[i]=new LinkedList<>();
+		
+		if(dir == 0) {	// 위로
+			for(int i = 0 ; i < N ; i++) {
+				for(int j = 0 ; j < N ; j++) {
+					input(link[i],arr[j][i]);
 				}
 			}
-			break;
-		case 'v':
-//			for(int x = 0 ; x < N ; x++)
-//				for(int y = N-1 ; y >= 0 ; y--)
-//					searchLastZeroIndexCol(data.arr, y, 1, x);
-			break;
-		case '<':
-			for(int y = 0 ; y < N ; y++)
-			{
-				for(int x = 0 ; x < N ; x++)
-				{
-					int idx = searchLastZeroIndexRow(data.arr, x, -1, y);
-					if( idx == 0 || idx == N-1 || data.arr[y][idx] == 0)
-						swap(data.arr[y],idx,x);
-					if(0 < idx && idx < N && data.arr[y][idx-1] != 0)
-						compareNumber(data.arr[y],idx-1,idx);
+			for(int i = 0 ; i < N ; i++) {
+				int idx = 0;
+				while(!link[i].isEmpty()) {
+					int val = link[i].poll();
+					brr[idx++][i] = val;
+					answer = Math.max(answer, val);
+				}
+				for(;idx < N ; idx++) {
+					brr[idx][i] = 0;
 				}
 			}
-			break;
+			for(int i = 0 ; i < 4 ; i++) {
+				dfs(brr,i,level+1);
+			}
+		}else if(dir == 1) {	//아래
+			for(int i = 0 ; i < N ; i++) {
+				for(int j = 0 ; j < N ; j++) {
+					input(link[i],arr[N-j-1][i]);
+				}
+			}
+			for(int i = 0 ; i < N ; i++) {
+				int idx = 0;
+				while(!link[i].isEmpty()) {
+					int val = link[i].poll();
+					brr[N-1-idx++][i] = val;
+					answer = Math.max(answer, val);
+				}
+				for(;idx < N ; idx++) {
+					brr[N-1-idx][i] = 0;
+				}
+			}
+			for(int i = 0 ; i < 4 ; i++) {
+				dfs(brr,i,level+1);
+			}
+		}else if(dir == 2) {	//옆
+			for(int i = 0 ; i < N ; i++) {
+				for(int j = 0 ; j < N ; j++) {
+					input(link[i],arr[i][j]);
+				}
+			}
+			for(int i = 0 ; i < N ; i++) {
+				int idx = 0;
+				while(!link[i].isEmpty()) {
+					int val = link[i].poll();
+					brr[i][idx++] = val;
+					answer = Math.max(answer, val);
+				}
+				for(;idx < N ; idx++) {
+					brr[i][idx] = 0;
+				}
+			}
+			for(int i = 0 ; i < 4 ; i++) {
+				dfs(brr,i,level+1);
+			}
+		}else if(dir == 3) {	//오른쪽
+			for(int i = 0 ; i < N ; i++) {
+				for(int j = 0 ; j < N ; j++) {
+					input(link[i],arr[i][N-1-j]);
+				}
+			}
+			for(int i = 0 ; i < N ; i++) {
+				int idx = 0;
+				while(!link[i].isEmpty()) {
+					int val = link[i].poll();
+					brr[i][N-1-idx++] = val;
+					answer = Math.max(answer, val);
+				}
+				for(;idx < N ; idx++) {
+					brr[i][N-1-idx] = 0;
+				}
+			}
+			for(int i = 0 ; i < 4 ; i++) {
+				dfs(brr,i,level+1);
+			}
 		}
 	}
-	
-	public static int searchLastZeroIndexRow(int[][] arr, int idx , int dir , int pivot)
-	{
-		while(0 <= idx+dir && idx+dir < arr.length && arr[pivot][idx+dir] == 0)
-			idx += dir;
-		return idx;
-	}
-	public static int searchLastZeroIndexCol(int[][] arr, int idx , int dir , int pivot)
-	{
-		while(0 <= idx+dir && idx+dir < arr.length && arr[idx+dir][pivot] == 0)
-			idx += dir;
-		return idx;
-	}
-	public static void compareNumber(int[] arr , int fix , int coming)
-	{
-		if(arr[fix] == arr[coming])
-		{
-			arr[fix] += arr[coming];
-			arr[coming] = 0;
+	public static void input(LinkedList<Integer> link,int in) {
+		if(link.isEmpty()) link.add(in);
+		else {
+			if(link.peek() == in) {
+				input(link,link.poll() + in);
+			}else link.add(in);
 		}
 	}
-	public static void swap(int[] arr, int a, int b)
-	{
-		int tmp = arr[a];
-		arr[a] = arr[b];
-		arr[b] = tmp;
+
+	private static void input() throws IOException {
+		N = stoi(br.readLine());
+		arr = new int[N][N];
+		answer = 0;
+		
+		for(int i = 0 ; i < N ; i++) {
+			st=new StringTokenizer(br.readLine());
+			for(int j = 0 ; j < N ; j++) {
+				arr[i][j] = stoi(st.nextToken());
+			}
+		}
 	}
+
 }
