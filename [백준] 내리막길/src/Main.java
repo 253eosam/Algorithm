@@ -46,7 +46,7 @@ public class Main {
 	public static int[] dx = {0,1,0,-1};
 	private static long dfs(int y, int x) {
 		if(y == N-1 && x == M-1) return 1;
-		if(dp[y][x] != 0) return dp[y][x];
+		if(dp[y][x] != -1) return dp[y][x];
 		dp[y][x] = 0;
 		int targetCase = 0;
 		for(int i = 0 ; i < 4 ; i++) {
