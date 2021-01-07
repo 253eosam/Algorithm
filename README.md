@@ -6,4 +6,4 @@
 
 ##### [DFS & BFS](algorithm_note/dfs_and_bfs.md)
 
-##### [순열](algorithm_note/permutation.md)
+##### [순열(Permutation)](algorithm_note/permutation.md)
