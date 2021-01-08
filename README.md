@@ -7,3 +7,5 @@
 ##### [DFS & BFS](algorithm_note/dfs_and_bfs.md)
 
 ##### [순열(Permutation)](algorithm_note/permutation.md)
+
+##### [소수(Prime number)](algorithm_note/prime_number.md)
