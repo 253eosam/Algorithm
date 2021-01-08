@@ -8,4 +8,6 @@
 
 ##### [순열(Permutation)](algorithm_note/permutation.md)
 
+##### [조합(Combination)](algorithm_note/combination.md)
+
 ##### [소수(Prime number)](algorithm_note/prime_number.md)
