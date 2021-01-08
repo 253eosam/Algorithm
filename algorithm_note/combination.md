@@ -7,7 +7,9 @@
 
 <br>
 
-## 인덱스를 이용한 조합
+## 인덱스를 이용한 조합 👍
+
+경우의 수를 순서대로 뽑아낼 수 있는 장점이있고, 코드를 더 직관적으로 짤 수 있음.
 
 ```javascript
 const combination = (arr, r) => {
@@ -15,15 +17,6 @@ const combination = (arr, r) => {
 	com(result, arr, r, Array(r).fill());
 	return result;
 };
-/**
- *
- * @param {Array} target
- * @param {Array} arr
- * @param {number} r
- * @param {Array} picked
- * @param {number} deep
- * @param {number} pivot
- */
 const com = (target, arr, r, picked, deep = 0, pivot = 0) => {
 	if (deep === r) {
 		target.push(picked.slice());
@@ -50,5 +43,42 @@ combination(arr, r).forEach(item => console.log(item));
 [ 2, 3, 5 ]
 [ 2, 4, 5 ]
 [ 3, 4, 5 ]
+*/
+```
+
+<br>
+
+## 조합 계산법을 이용한 방법
+
+```javascript
+const n = 5;
+const r = 3;
+const arr = Array.from(Array(n).fill(), (_, i) => i + 1);
+const picked = Array(r);
+function Combination(n, r, c) {
+	if (r == 0) {
+		console.log(picked.slice());
+		return;
+	}
+	if (n < r) {
+		return;
+	} else {
+		picked[r - 1] = arr[n - 1];
+		Combination(n - 1, r - 1, c);
+		Combination(n - 1, r, c);
+	}
+}
+Combination(n, r, r);
+/* ---------------------------------------------
+[ 3, 4, 5 ]
+[ 2, 4, 5 ]
+[ 1, 4, 5 ]
+[ 2, 3, 5 ]
+[ 1, 3, 5 ]
+[ 1, 2, 5 ]
+[ 2, 3, 4 ]
+[ 1, 3, 4 ]
+[ 1, 2, 4 ]
+[ 1, 2, 3 ]
 */
 ```
