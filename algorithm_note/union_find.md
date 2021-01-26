@@ -18,7 +18,7 @@
 
 ## Union-find 구현
 
-![참고] (https://k.kakaocdn.net/dn/dF8aEk/btqE1p11KbP/ZVKrRFjKQ4Ydm944hmjZrk/img.png)
+![참고](https://k.kakaocdn.net/dn/dF8aEk/btqE1p11KbP/ZVKrRFjKQ4Ydm944hmjZrk/img.png)
 
 ```javascript
 const makeSet = arr => arr.fill().map((_,i) => i);
