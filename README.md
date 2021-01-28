@@ -17,3 +17,5 @@ leetcode : [donaldd](https://leetcode.com/Donaldd/)
 ##### [조합(Combination)](algorithm_note/combination.md)
 
 ##### [소수(Prime number)](algorithm_note/prime_number.md)
+
+##### [Union-find](algorithm_note/union_find.md)

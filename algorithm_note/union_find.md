@@ -14,11 +14,11 @@
 -   상호베타 집합 연산
     -   `make-set(x)` : [초기화 단계], 유일한 멤버 x를 포함하는 새로운 집합을 생성하는 연산 
     -   `find-set(x)` : [대표자 찾기], x를 포함하는 집합을 찾는 오퍼레이션
-    -   `union(x,y)` : [합치기], x와 y를 포함하는 두 집합을 통합하는 오퍼레이션
+    -   `union-set(x,y)` : [합치기], x와 y를 포함하는 두 집합을 통합하는 오퍼레이션
 
 ## Union-find 구현
 
-![참고] (https://k.kakaocdn.net/dn/dF8aEk/btqE1p11KbP/ZVKrRFjKQ4Ydm944hmjZrk/img.png)
+![참고](https://k.kakaocdn.net/dn/dF8aEk/btqE1p11KbP/ZVKrRFjKQ4Ydm944hmjZrk/img.png)
 
 ```javascript
 const makeSet = arr => arr.fill().map((_,i) => i);
