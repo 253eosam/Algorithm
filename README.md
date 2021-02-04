@@ -19,3 +19,5 @@ leetcode : [donaldd](https://leetcode.com/Donaldd/)
 ##### [소수(Prime number)](algorithm_note/prime_number.md)
 
 ##### [Union-find](algorithm_note/union_find.md)
+
+##### [MST](algorithm_note/mst.md)
