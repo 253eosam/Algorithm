@@ -23,3 +23,5 @@ leetcode : [donaldd](https://leetcode.com/Donaldd/)
 ##### [MST](algorithm_note/mst.md)
 
 ##### [Sliding window](algorithm_note/sliding_window.md)
+
+##### [Linked list](algorithm_note/linked_list.md)
