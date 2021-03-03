@@ -30,4 +30,5 @@ while(pivot) {
     console.log(pivot.value)
     pivot = pivot.next
 }
+// null 1 2 3 4 5
 ```
