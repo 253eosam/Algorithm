@@ -12,23 +12,40 @@
 이 두 종류의 노드는 역할만 다를 뿐 모두 같은 Node 객체를 사용합니다.
 
 ```js
-function LinkedList (value, next) {
+function Node (value, next) {
     this.value = (value === undefined ? null : value)
     this.next = (next == undefined ? null : next)
 }
 
-let head = null
-let tmp = new LinkedList()
-for(let i = 1 ; i <= 5 ; i++) {
-    tmp.next = new LinkedList(i)
-    if (!head) head = tmp
-    tmp = tmp.next
+function LinkedList() {
+    this.head = null
+    this.tail = null
+    this.size = 0
+    this.isEmpty = () => this.size === 0
+    this.add = node => {
+        if (!this.head) this.head = this.tail = new Node(undefined,node)
+        this.tail = this.tail.next = node
+        this.size++;
+    }
+    this.pop = () => {
+        if (this.isEmpty()) throw new Error('is empty linked list..!')
+        this.head.next = this.head.next.next
+    }
+    this.top = () => this.head.next
+    this.print = () => {
+        let tmp = this.head.next
+        while(tmp) {
+            console.log(tmp.value)
+            tmp = tmp.next
+        }
+    }
 }
 
-let pivot = head
-while(pivot) {
-    console.log(pivot.value)
-    pivot = pivot.next
-}
-// null 1 2 3 4 5
+const linkedList = new LinkedList();
+linkedList.add(new Node(1))
+linkedList.add(new Node(2))
+linkedList.add(new Node(3))
+linkedList.add(new Node(4))
+linkedList.add(new Node(5))
+linkedList.print()  // 1 2 3 4 5
 ```
