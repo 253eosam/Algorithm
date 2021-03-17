@@ -22,6 +22,10 @@ leetcode : [donaldd](https://leetcode.com/Donaldd/)
 
 ##### [MST](algorithm_note/mst.md)
 
+##### [Prim](algorithm_note/prim.md)
+
+##### [KRUSKAL](algorithm_note/kruskal.md)
+
 ##### [Sliding window](algorithm_note/sliding_window.md)
 
 ##### [Linked list](algorithm_note/linked_list.md)
