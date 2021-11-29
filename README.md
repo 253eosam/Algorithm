@@ -6,7 +6,7 @@
 
 프로그래머스 : https://programmers.co.kr/learn/challenges
 
-leetcode : [253eosam](https://leetcode.com/253eosam/)
+leetcode : [253eosam](https://leetcode.com/253eosam/) & [문제 풀이](https://github.com/253eosam/Algorithm/tree/master/leetcode)
 
 ## 🔖 목차
 
