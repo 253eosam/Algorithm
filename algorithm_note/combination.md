@@ -82,3 +82,31 @@ Combination(n, r, r);
 [ 1, 2, 3 ]
 */
 ```
+```ts
+const combination = (nums: number[], target: number, cb?: Function, etc?: { deep:number, index:number, coms:number[] }): void => {
+  const { deep = 0, index = 0, coms = Array(target) } = { ...etc }
+  if (deep === target) {
+      cb && cb( ... coms )
+    return
+  }
+
+  for(let i = index; i < nums.length; i++) {
+    coms[deep] = nums[i]
+    combination(nums, target, cb, { deep: deep+1, index: i+1, coms })
+  }
+}
+
+combination([1,2,3,4,5],3,console.log)
+/**
+1 2 3
+1 2 4
+1 2 5
+1 3 4
+1 3 5
+1 4 5
+2 3 4
+2 3 5
+2 4 5
+3 4 5
+ * /
+```
