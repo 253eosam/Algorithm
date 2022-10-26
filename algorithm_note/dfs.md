@@ -1,10 +1,10 @@
 # DFS & Backtracking
 
-## 깊이 우선 탐색(Depth First Search)
-
 ![https://swexpertacademy.com/main/images/sw_sub/img_visualcodelist_13.png](https://swexpertacademy.com/main/images/sw_sub/img_visualcodelist_13.png)
 
 ![https://swexpertacademy.com/main/images/sw_sub/img_visualcodelist_01.png](https://swexpertacademy.com/main/images/sw_sub/img_visualcodelist_01.png)
+
+## 깊이 우선 탐색(Depth First Search)
 
 - `재귀함수`를 이용
 - `조건에 도달하면 함수를 리턴`하면서 스택에 쌓인 함수를 수행해낸다.
