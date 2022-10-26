@@ -10,7 +10,9 @@ leetcode : [253eosam](https://leetcode.com/253eosam/) & [문제 풀이](https://
 
 ## 🔖 목차
 
-##### [DFS & BFS](algorithm_note/dfs_and_bfs.md)
+##### [BFS](algorithm_note/bfs.md)
+
+##### [DFS & Backtracking](algorithm_note/dfs.md)
 
 ##### [순열(Permutation)](algorithm_note/permutation.md)
 
