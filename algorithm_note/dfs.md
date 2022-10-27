@@ -34,3 +34,4 @@
 ### 대표 문제
 
 - leetcode : [79. Word Search](https://leetcode.com/problems/word-search/) :: [풀이](https://github.com/253eosam/Algorithm/blob/master/leetcode/p79.md)
+- leetcode : [39. Combination Sum](https://leetcode.com/problems/combination-sum/) :: [풀이](https://github.com/253eosam/Algorithm/blob/master/leetcode/p39.md)
