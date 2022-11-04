@@ -12,6 +12,8 @@ leetcode : [253eosam](https://leetcode.com/253eosam/) & [문제 풀이](https://
 
 ##### [BFS](algorithm_note/bfs.md)
 
+##### [Binary Search](algorithm_note/binary-search.md)
+
 ##### [DFS & Backtracking](algorithm_note/dfs.md)
 
 ##### [순열(Permutation)](algorithm_note/permutation.md)
