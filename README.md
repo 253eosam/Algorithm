@@ -29,5 +29,3 @@
 | 🌿 **Kruskal Algorithm**            | [크루스칼 알고리즘](algorithm_note/kruskal.md) |
 | 🪟 **Sliding Window**               | [슬라이딩 윈도우 기법](algorithm_note/sliding_window.md) |
 | 🔗 **Linked List**                  | [연결 리스트](algorithm_note/linked_list.md) |
-
----
