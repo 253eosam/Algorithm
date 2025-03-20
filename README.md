@@ -1,6 +1,6 @@
 # Algorithm
 
-> 알고리즘 문제를 풀면서 생겨난 노하우 및 생각
+> 알고리즘 문제 풀이 및 이론 공부
 
 백준 : [dhzm2aud](https://www.acmicpc.net/user/dhzm2aud)
 
