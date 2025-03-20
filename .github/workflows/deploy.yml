@@ -3,7 +3,7 @@ name: Deploy VitePress site to Pages (algo-wiki)
 on:
   push:
     branches:
-      - feature/mk-web
+      - master
 
 permissions:
   contents: write
