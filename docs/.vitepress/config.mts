@@ -17,16 +17,26 @@ export default defineConfig({
       theory: [
         {
           text: '자료구조',
+          base: '/theory/data-structure/',
           items: [
-            { text: 'Markdown Examples', link: '/markdown-examples' },
-            { text: 'Runtime API Examples', link: '/api-examples' },
+            { text: '연결 리스트 (Linked List)', link: 'linked-list/' },
           ],
         },
         {
           text: '알고리즘',
+          base: '/theory/algorithm/',
           items: [
-            { text: 'Markdown Examples', link: '/markdown-examples' },
-            { text: 'Runtime API Examples', link: '/api-examples' },
+            { text: '너비 우선 탐색 (BFS)', link: 'bfs/' },
+            { text: '깊이 우선 탐색 (DFS)', link: 'dfs/' },
+            { text: '이진 탐색 (Binary Search)', link: 'binary-search/' },
+            { text: '조합 (Combination)', link: 'combination/' },
+            { text: '순열 (Permutation)', link: 'permutation/' },
+            { text: '크루스칼 (Kruskal)', link: 'kruskal/' },
+            { text: '프림 (Prim)', link: 'prim/' },
+            { text: '최소 신장 트리 (MST)', link: 'mst/' },
+            { text: '소수 (Prime Number)', link: 'prime-number/' },
+            { text: '슬라이딩 윈도우 (Sliding Window)', link: 'sliding-window/' },
+            { text: '유니온 파인드 (Union Find)', link: 'union-find/' },
           ],
         },
       ],
@@ -111,8 +121,25 @@ export default defineConfig({
             { text: '11 - PermMissingElem', link: 'PermMissingElem' },
             { text: '12 - TapeEquilibrium', link: 'TapeEquilibrium' },
           ],
-        }
-        ,
+        },
+        {
+          text: '백준',
+          collapsed: true,
+          base: '/problems/baekjoon/',
+          items: [],
+        },
+        {
+          text: '프로그래머스',
+          collapsed: true,
+          base: '/problems/programmers/',
+          items: [],
+        },
+        {
+          text: 'Problem Folder (Custom)',
+          collapsed: true,
+          base: '/problems/custom/',
+          items: [],
+        },
       ],
     },
 
